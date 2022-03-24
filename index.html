@@ -167,6 +167,154 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘骁">
+      <meta itemprop="description" content="行百里者半九十。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lx's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/24/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">网络编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-24 23:34:14" itemprop="dateCreated datePublished" datetime="2022-03-24T23:34:14+08:00">2022-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-25 00:20:24" itemprop="dateModified" datetime="2022-03-25T00:20:24+08:00">2022-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="网络通信协议"><a href="#网络通信协议" class="headerlink" title="网络通信协议"></a>网络通信协议</h2><ul>
+<li>TCP <strong>Transmission Control Protocol</strong><ul>
+<li><em><strong>面向连接</strong></em>的通信协议,连接后要进行 <strong>“三次握手”</strong>确认连接 <em><strong>可靠</strong></em> 。</li>
+<li>三次握手后,<em>Client与Server</em>间可进行大量数据的传输。虽然<strong>效率</strong>较低，但可保证<strong>传输的安全</strong>。</li>
+</ul>
+</li>
+<li>UDP <strong>User Datagram Protocol</strong><ul>
+<li>消耗<strong>资源</strong>少,传输<strong>效率</strong>较高,传输文件有大小<strong>限制（64K）</strong>。</li>
+<li>不能保证数据传输的完整性。<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="Server端"><a href="#Server端" class="headerlink" title="Server端"></a>Server端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServerSocket</span> <span class="variable">serverSocket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8888</span>);</span><br><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> serverSocket.accept();</span><br><span class="line">    <span class="comment">//须保证端口没有被占用;</span></span><br><span class="line">    <span class="comment">//如有客户端连接,则返回Socket对象,程序继续;</span></span><br><span class="line">    <span class="comment">//serverSocket可通过accept方法返回多个Socket;</span></span><br><span class="line">    InputStream inputStream=socket.getInputStream();</span><br><span class="line">    OutputStream outputStream=socket.getOutputStream();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//根据情况选择合适IO流;***IO流要好好掌握哦~~***</span></span><br><span class="line">    socket.shutdownOutput();<span class="comment">//结束标记</span></span><br><span class="line"></span><br><span class="line">    inputStream.close();</span><br><span class="line">    outputStream.close();</span><br><span class="line">    socket.close();</span><br><span class="line">    serverSocket.close();<span class="comment">//记得关闭各种流和socket以防资源占用</span></span><br></pre></td></tr></table></figure>
+<h3 id="Client端"><a href="#Client端" class="headerlink" title="Client端"></a>Client端</h3></li>
+</ul>
+</li>
+<li><strong>字节流</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(InetAddress.getLocalHost(), <span class="number">8888</span>);</span><br><span class="line"><span class="comment">//连接该主机9999端口,成功则返回Socket对象</span></span><br><span class="line"><span class="comment">//***客户端和服务器端各有一个Socket***</span></span><br><span class="line"><span class="comment">//多次传输过程中添加结束标记防止阻塞</span></span><br><span class="line"></span><br><span class="line">OutputStream outputStream=socket.getOutputStream();</span><br><span class="line">socket.shutdownOutput();<span class="comment">//结束标记</span></span><br><span class="line"></span><br><span class="line">InputStream inputStream=socket.getInputStream();</span><br><span class="line"></span><br><span class="line">inputStream.close();</span><br><span class="line">outputStream.close();</span><br><span class="line">socket.close();<span class="comment">//记得关闭各种流和socket</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><strong>字符流</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BufferedWriter</span> <span class="variable">bufferedWriter</span> <span class="operator">=</span></span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(socket.getOutputStream()));</span><br><span class="line">bufferedWriter.write(<span class="string">&quot;Hello,server!&quot;</span>);</span><br><span class="line">bufferedWriter.newLine();<span class="comment">//表示写入内容结束</span></span><br><span class="line">bufferedWriter.flush();<span class="comment">//使用字符流需要手动刷新</span></span><br><span class="line"><span class="comment">//IO流一定要搞清楚！！！血的教训</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/%E4%B8%8D%E7%88%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘骁">
+      <meta itemprop="description" content="行百里者半九十。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lx's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/24/%E4%B8%8D%E7%88%BD/" class="post-title-link" itemprop="url">令人不爽</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-24 23:05:44 / 修改时间：23:43:51" itemprop="dateCreated datePublished" datetime="2022-03-24T23:05:44+08:00">2022-03-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="令人不爽的一天"><a href="#令人不爽的一天" class="headerlink" title="令人不爽的一天"></a>令人不爽的一天</h1><h2 id="离散数学"><a href="#离散数学" class="headerlink" title="离散数学"></a>离散数学</h2><ul>
+<li>学起来 <em><strong>一塌糊涂</strong></em> ,做起来更加 <del>一窍不通</del> !</li>
+<li>都是命题,为什么<strong>谓词逻辑</strong>的<strong>符号化</strong>那么奇怪。符号化以后就是<strong>天书</strong>。<del>真的有人能理解符号化后的命题后进行推理吗？</del></li>
+<li>去除量词的过程就是 <em><strong>纯纯的</strong></em> <del>排列组合</del>,写那么长谁愿意化简？（<del>写都不想写</del>）<h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2></li>
+<li>网络编程有点 <strong>繁琐</strong>,更加充分暴露我的IO流掌握如 <em><strong>空中楼阁</strong></em>。 </li>
+<li><em>Input</em> 和 <em>Output</em> 到底哪个是输入哪个是输出？为什么要这么折磨我？</li>
+<li><strong>Server端</strong>和<strong>Client端</strong>来来回回<em><strong>切换</strong></em>写有意思吗？为什么两端的代码长这么 <em><strong>像</strong></em> ？写完一大段然后发现<strong>IO流</strong>写反了,再看一眼Server端和Client端写反了？<del>真的有这样磨人心态的吗？</del></li>
+<li>~ <em><strong><del>学习进度好慢！</del></strong></em> ~<h2 id="大学物理"><a href="#大学物理" class="headerlink" title="大学物理"></a>大学物理</h2></li>
+<li>不要再拿 <em>符号正负</em> 来折磨我了！</li>
+<li><em>加速度、速度、位移</em> 之间的关系式总能完美地选上 <em><strong>另一条路</strong></em>。<del>悟已往之不谏，知来者之一点不想追。</del></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/22/%E9%9A%8F%E4%BE%BF%E5%90%90%E6%A7%BD1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -692,7 +840,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
