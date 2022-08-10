@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-08-10 11:07:13 / 修改时间：20:15:34" itemprop="dateCreated datePublished" datetime="2022-08-10T11:07:13+08:00">2022-08-10</time>
+              <time title="创建时间：2022-08-10 11:07:13 / 修改时间：21:34:58" itemprop="dateCreated datePublished" datetime="2022-08-10T11:07:13+08:00">2022-08-10</time>
             </span>
 
           
@@ -207,30 +207,30 @@
 
       
           <h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><ol>
-<li>HttpServlet-&gt;genericServlet-&gt;Servlet</li>
-<li>核心方法:init() service() destory()</li>
-<li>service():当有请求过来,service()会自动相应 <em><strong>(tomcat容器调用)</strong></em> <br>在HttpServlet中会分析请求方式,决定调用get&#x2F;post&#x2F;head&#x2F;delet等等方法<br>在HttpServlet中,这些方法默认为405风格——需要用子类实现对应方法</li>
+<li>HttpServlet-&gt;genericServlet-&gt;Servlet<br><img src="https://i0.hdslb.com/bfs/album/165a21fc02d82be59631d758f4303ed018056b77.png" alt="servlet继承关系"></li>
+<li><strong>核心方法:</strong> init() service() destory()</li>
+<li><strong>service():</strong> 当有请求过来,service()会自动相应 <em><strong>(tomcat容器调用)</strong></em> <br>在HttpServlet中会分析请求方式,决定调用get&#x2F;post&#x2F;head&#x2F;delet等等方法<br>在HttpServlet中,这些方法默认为405风格——需要用子类实现对应方法</li>
 <li>在新建servlet时,根据请求方式决定重写处理方法</li>
 </ol>
 <h2 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h2><ol>
-<li><strong>生命周期</strong>:从出生到死亡的过程.对应了servlet中的三个方法:init() service() destory()</li>
-<li><strong>默认情况下</strong>:<ol>
+<li><strong>生命周期:</strong> 从出生到死亡的过程.对应了servlet中的三个方法:init() service() destory()</li>
+<li><strong>默认情况下:</strong><ol>
 <li>第一次接受请求时,此servlet会实例化(tomcat容器:内部调用构造方法)、初始化(调用init())、然后服务(调用service())</li>
 <li>从第二次开始,直接调用服务(service())</li>
 </ol>
 </li>
-<li><strong>注意</strong>:<ol>
+<li><strong>注意:</strong><ol>
 <li>tomcat只会创建一个servelet实例,所有的请求都是由该实例去响应</li>
 <li>默认情况下,在第一次请求时tomcat才会去实例化,初始化,以提高系统的启动速度</li>
 <li>若需要提高响应速度,则在web.xml中设置servlet的&lt;load-on-start&gt;标签设置初始化时机</li>
 </ol>
 </li>
-<li><strong>servlet初始化时机</strong><ol>
+<li><strong>servlet初始化时机:</strong><ol>
 <li>默认情况下是第一次接受请求时进行实例化和初始化</li>
 <li>&lt;load-on-startup&gt;来设置servlet启动先后顺序,数字越小,启动越靠前,最小值为0</li>
 </ol>
 </li>
-<li>servlet在tomcat容器中是<strong>单例的、线程不安全的</strong> <ol>
+<li>servlet在tomcat容器中是<strong>单例的、线程不安全的:</strong> <ol>
 <li>单例:servlet中所有请求都是通过一个实例去相应 </li>
 <li>线程不安全:当一个线程需要根据该实例中的某个成员变量去做逻辑判断是，如果另一个线程改变成员变量，则会导致错误</li>
 <li>servlet线程不安全:<ol>
@@ -241,6 +241,109 @@
 </ol>
 </li>
 </ol>
+<h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><ol>
+<li>Http是无状态的</li>
+<li>Http请求响应包含 <strong>请求</strong> 和 <strong>响应</strong> 两个部分<ul>
+<li>请求:<ol>
+<li>请求行:请求的最基本信息——<strong>请求方式</strong>、<strong>访问地址</strong>、<strong>HTTP协议版本</strong></li>
+<li>请求消息:通过具体的参数对本次请求进行详细说明<br>     键值对格式,键与值之间用:隔开</li>
+<li>请求体:<ul>
+<li>get方式,没有请求体,担忧queryString</li>
+<li>post方式,有请求体,form data</li>
+<li>json格式,有请求体,request payload</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>响应:</li>
+</ul>
+<ol>
+<li>响应行: <strong>协议</strong>、<strong>响应状态码</strong>(200正常响应,404找不到资源,405请求方式不支持,500服务器内部错误)、<strong>响应状态</strong></li>
+<li>响应头: 包含服务器信息</li>
+<li>响应体: 响应的实际内容</li>
+</ol>
+</li>
+</ol>
+<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><ol>
+<li>Http是无状态的:服务器<strong>无法</strong>判断两次请求是否是<strong>同一个客户端</strong>发过来的</li>
+<li>带来问题:无法区分用户,导致逻辑混乱</li>
+<li>解决:<strong>会话跟踪技术</strong>解决无状态问题</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/11/GMP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘骁">
+      <meta itemprop="description" content="行百里者半九十。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lx's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/11/GMP/" class="post-title-link" itemprop="url">GMP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-11 19:55:53" itemprop="dateCreated datePublished" datetime="2022-07-11T19:55:53+08:00">2022-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-10 21:34:55" itemprop="dateModified" datetime="2022-08-10T21:34:55+08:00">2022-08-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="GMP模型"><a href="#GMP模型" class="headerlink" title="GMP模型"></a>GMP模型</h2><p>操作系统调度器调度CPU<br>在内核调度线程<br>用户态中保存Processor,用GOMAXPROCS设置P个数<br>每个P管理一个Goroutine队列<br>全局队列处理剩余G</p>
+<h3 id="设计策略"><a href="#设计策略" class="headerlink" title="设计策略"></a>设计策略</h3><h4 id="复用线程"><a href="#复用线程" class="headerlink" title="复用线程"></a>复用线程</h4><pre><code>work stealing机制 将P队列中其他G转移到其他空P中
+hand off机制 某线程阻塞，创建/唤醒新thread另外执行后面G
+</code></pre>
+<h4 id="利用并行"><a href="#利用并行" class="headerlink" title="利用并行"></a>利用并行</h4><pre><code>GOMAXPROCE设置最大P个数
+</code></pre>
+<h4 id="抢占"><a href="#抢占" class="headerlink" title="抢占"></a>抢占</h4><pre><code>每个G绑定CPU只有10ms,所有G权力平均分配
+</code></pre>
+<h4 id="全局队列"><a href="#全局队列" class="headerlink" title="全局队列"></a>全局队列</h4><pre><code>空闲P队列从其他P队列中偷取,之后再从全局队列中偷取
+</code></pre>
+<h2 id="GOPATH"><a href="#GOPATH" class="headerlink" title="GOPATH"></a>GOPATH</h2><p>无版本控制概念<br>无法同步一致第三方版本号<br>无法指定项目引用到第三方版本号</p>
 
       
     </div>
@@ -625,7 +728,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-01 09:42:38" itemprop="dateModified" datetime="2022-04-01T09:42:38+08:00">2022-04-01</time>
+                <time title="修改时间：2022-08-10 21:34:56" itemprop="dateModified" datetime="2022-08-10T21:34:56+08:00">2022-08-10</time>
               </span>
 
           
@@ -677,7 +780,7 @@
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String MESSAGE_LOGIN_SUCCEED=<span class="string">&quot;1&quot;</span>;</span><br><span class="line">String MESSAGE_LOGIN_FAILED=<span class="string">&quot;-1&quot;</span>;</span><br><span class="line"><span class="comment">//在接口中定义了一些常量,不同的常量值代表不同的消息类型</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><p><img src="https://www.hualigs.cn/image/623de53935256.jpg" alt="https://www.hualigs.cn/image/623de53935256.jpg"></p>
+<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><p><img src="https://www.hualigs.cn/image/623de53935256.jpg" alt="功能实现"></p>
 <h4 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h4><ul>
 <li><p>使用<strong>ObjectIOStream</strong>在客户端和服务器间传输User和Message对象。</p>
 </li>
@@ -791,7 +894,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-25 20:00:21" itemprop="dateModified" datetime="2022-03-25T20:00:21+08:00">2022-03-25</time>
+                <time title="修改时间：2022-08-10 21:35:00" itemprop="dateModified" datetime="2022-08-10T21:35:00+08:00">2022-08-10</time>
               </span>
 
           
@@ -807,7 +910,7 @@
       
           <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="网络通信协议"><a href="#网络通信协议" class="headerlink" title="网络通信协议"></a>网络通信协议</h2><ul>
 <li>TCP <strong>Transmission Control Protocol</strong><ul>
-<li><em><strong>面向连接</strong></em>的通信协议,连接后要进行 <strong>“三次握手”</strong>确认连接 <em><strong>可靠</strong></em> 。</li>
+<li><em><strong>面向连接</strong></em> 的通信协议,连接后要进行 <strong>“三次握手”</strong> 确认连接 <em><strong>可靠</strong></em> 。</li>
 <li>三次握手后,<em>Client与Server</em>间可进行大量数据的传输。虽然<strong>效率</strong>较低，但可保证<strong>传输的安全</strong>。</li>
 </ul>
 </li>
@@ -1165,134 +1268,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/My-Second-post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="刘骁">
-      <meta itemprop="description" content="行百里者半九十。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lx's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/20/My-Second-post/" class="post-title-link" itemprop="url">My Second Post</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-20 21:33:48" itemprop="dateCreated datePublished" datetime="2022-03-20T21:33:48+08:00">2022-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-22 23:33:36" itemprop="dateModified" datetime="2022-03-22T23:33:36+08:00">2022-03-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="HTML学习"><a href="#HTML学习" class="headerlink" title="HTML学习"></a>HTML学习</h1><h2 id="HTML常用标签"><a href="#HTML常用标签" class="headerlink" title="HTML常用标签"></a>HTML常用标签</h2><h3 id="结构标签"><a href="#结构标签" class="headerlink" title="结构标签"></a>结构标签</h3><ol>
-<li><em>&lt;h1&gt;-&lt;h6&gt;</em> 标题标签<br></li>
-<li><em>&lt;p&gt;&lt;&#x2F;p&gt;</em> 段落标签 必须用段落标签才能<em>分段</em><br></li>
-<li><em>&lt;br&#x2F;&gt;</em> 强制换行标签 是单标签<br><h3 id="文本格式化标签"><a href="#文本格式化标签" class="headerlink" title="文本格式化标签"></a>文本格式化标签</h3></li>
-<li><em>&lt;strong&gt;&lt;&#x2F;strong&gt;or&lt;b&gt;&lt;&#x2F;b&gt;</em> 加粗标签<br></li>
-<li><em>&lt;em&gt;&lt;&#x2F;em&gt;or&lt;i&gt;&lt;&#x2F;i&gt;</em> 倾斜标签<br></li>
-<li><em>&lt;del&gt;&lt;&#x2F;del&gt;or&lt;s&gt;&lt;&#x2F;s&gt;</em> 删除线标签<br></li>
-<li><em>&lt;ins&gt;&lt;&#x2F;ins&gt;or&lt;u&gt;&lt;&#x2F;u&gt;</em> 下划线标签<br><h3 id="无语义（盒子）标签"><a href="#无语义（盒子）标签" class="headerlink" title="无语义（盒子）标签"></a>无语义（盒子）标签</h3></li>
-<li><em>&lt;div&gt;&lt;&#x2F;div&gt;</em> division 分割标签，独占一行<br></li>
-<li><em>&lt;span&gt;&lt;&#x2F;span&gt;</em> span 跨度标签，一行上可有<strong>多个</strong><br><h3 id="图像标签"><a href="#图像标签" class="headerlink" title="图像标签"></a>图像标签</h3></li>
-<li><em>&lt;image src&#x3D;”URL” alt&#x3D;”替换内容” title&#x3D;”鼠标在图片上显示的文本” width&#x3D;”宽” height&#x3D;”高”/&gt;</em> <br><br>  图像标签有多个属性，不分先后顺序，但必须在图像后面。<br><br>  <em>相对路径：</em>同一级路径直接文件名；下一级补完后续路径；上一级用”..&#x2F;“<br><br>  <em>绝对路径：</em>较少使用<br><h3 id="超链接标签"><a href="#超链接标签" class="headerlink" title="超链接标签"></a>超链接标签</h3><h4 id="外部链接"><a href="#外部链接" class="headerlink" title="外部链接"></a>外部链接</h4></li>
-<li><em>&lt;a href&#x3D;”网址” target&#x3D;”_blank”&gt;文字&lt;&#x2F;a&gt;</em> <br><br>target值&#x3D;”_self”当前页面打开or”_blank”新页面打开<br><h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4></li>
-<li><em>&lt;a href&#x3D;”相对路径” target&#x3D;”_self”&gt;文字&lt;&#x2F;a&gt;</em><br><h4 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h4></li>
-<li><em>&lt;a href&#x3D;”文件地址”&gt;文字&lt;&#x2F;a&gt;</em> 文件格式要为”.zip”or”.exe”<br><h4 id="网页元素链接"><a href="#网页元素链接" class="headerlink" title="网页元素链接"></a>网页元素链接</h4></li>
-<li><em>&lt;a href&#x3D;”网址” target&#x3D;”_self”&gt;网页元素&lt;&#x2F;a&gt;</em><br><h4 id="锚点链接"><a href="#锚点链接" class="headerlink" title="锚点链接"></a>锚点链接</h4></li>
-<li><em>&lt;a href&#x3D;”#名字”&gt;文字&lt;&#x2F;a&gt; &lt;h3 id&#x3D;”名字”&gt;&lt;&#x2F;h3&gt;</em> 链接将跳转到id与href相同的地方<br><h3 id="注释标签"><a href="#注释标签" class="headerlink" title="注释标签"></a>注释标签</h3></li>
-</ol>
-<p>16.&lt;!–注释内容—&gt;</p>
-<ul>
-<li><em><strong>特殊字符</strong></em> <ul>
-<li><table>
-<thead>
-<tr>
-<th align="center">特殊字符</th>
-<th align="center">代码</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">空格</td>
-<td align="center">&amp;npsp</td>
-</tr>
-<tr>
-<td align="center">&lt;</td>
-<td align="center">&amp;lt</td>
-</tr>
-<tr>
-<td align="center">&gt;</td>
-<td align="center">&amp;gt</td>
-</tr>
-<tr>
-<td align="center">&amp;</td>
-<td align="center">&amp;amp</td>
-</tr>
-<tr>
-<td align="center">*</td>
-<td align="center">&amp;times</td>
-</tr>
-<tr>
-<td align="center">&#x2F;</td>
-<td align="center">&amp;divide</td>
-</tr>
-<tr>
-<td align="center">平方</td>
-<td align="center">&amp;sup2</td>
-</tr>
-<tr>
-<td align="center">立方</td>
-<td align="center">&amp;sup3</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1364,7 +1339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

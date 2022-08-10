@@ -167,6 +167,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/20/My-Second-post/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘骁">
+      <meta itemprop="description" content="行百里者半九十。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lx's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/20/My-Second-post/" class="post-title-link" itemprop="url">My Second Post</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-20 21:33:48" itemprop="dateCreated datePublished" datetime="2022-03-20T21:33:48+08:00">2022-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-22 23:33:36" itemprop="dateModified" datetime="2022-03-22T23:33:36+08:00">2022-03-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="HTML学习"><a href="#HTML学习" class="headerlink" title="HTML学习"></a>HTML学习</h1><h2 id="HTML常用标签"><a href="#HTML常用标签" class="headerlink" title="HTML常用标签"></a>HTML常用标签</h2><h3 id="结构标签"><a href="#结构标签" class="headerlink" title="结构标签"></a>结构标签</h3><ol>
+<li><em>&lt;h1&gt;-&lt;h6&gt;</em> 标题标签<br></li>
+<li><em>&lt;p&gt;&lt;&#x2F;p&gt;</em> 段落标签 必须用段落标签才能<em>分段</em><br></li>
+<li><em>&lt;br&#x2F;&gt;</em> 强制换行标签 是单标签<br><h3 id="文本格式化标签"><a href="#文本格式化标签" class="headerlink" title="文本格式化标签"></a>文本格式化标签</h3></li>
+<li><em>&lt;strong&gt;&lt;&#x2F;strong&gt;or&lt;b&gt;&lt;&#x2F;b&gt;</em> 加粗标签<br></li>
+<li><em>&lt;em&gt;&lt;&#x2F;em&gt;or&lt;i&gt;&lt;&#x2F;i&gt;</em> 倾斜标签<br></li>
+<li><em>&lt;del&gt;&lt;&#x2F;del&gt;or&lt;s&gt;&lt;&#x2F;s&gt;</em> 删除线标签<br></li>
+<li><em>&lt;ins&gt;&lt;&#x2F;ins&gt;or&lt;u&gt;&lt;&#x2F;u&gt;</em> 下划线标签<br><h3 id="无语义（盒子）标签"><a href="#无语义（盒子）标签" class="headerlink" title="无语义（盒子）标签"></a>无语义（盒子）标签</h3></li>
+<li><em>&lt;div&gt;&lt;&#x2F;div&gt;</em> division 分割标签，独占一行<br></li>
+<li><em>&lt;span&gt;&lt;&#x2F;span&gt;</em> span 跨度标签，一行上可有<strong>多个</strong><br><h3 id="图像标签"><a href="#图像标签" class="headerlink" title="图像标签"></a>图像标签</h3></li>
+<li><em>&lt;image src&#x3D;”URL” alt&#x3D;”替换内容” title&#x3D;”鼠标在图片上显示的文本” width&#x3D;”宽” height&#x3D;”高”/&gt;</em> <br><br>  图像标签有多个属性，不分先后顺序，但必须在图像后面。<br><br>  <em>相对路径：</em>同一级路径直接文件名；下一级补完后续路径；上一级用”..&#x2F;“<br><br>  <em>绝对路径：</em>较少使用<br><h3 id="超链接标签"><a href="#超链接标签" class="headerlink" title="超链接标签"></a>超链接标签</h3><h4 id="外部链接"><a href="#外部链接" class="headerlink" title="外部链接"></a>外部链接</h4></li>
+<li><em>&lt;a href&#x3D;”网址” target&#x3D;”_blank”&gt;文字&lt;&#x2F;a&gt;</em> <br><br>target值&#x3D;”_self”当前页面打开or”_blank”新页面打开<br><h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4></li>
+<li><em>&lt;a href&#x3D;”相对路径” target&#x3D;”_self”&gt;文字&lt;&#x2F;a&gt;</em><br><h4 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h4></li>
+<li><em>&lt;a href&#x3D;”文件地址”&gt;文字&lt;&#x2F;a&gt;</em> 文件格式要为”.zip”or”.exe”<br><h4 id="网页元素链接"><a href="#网页元素链接" class="headerlink" title="网页元素链接"></a>网页元素链接</h4></li>
+<li><em>&lt;a href&#x3D;”网址” target&#x3D;”_self”&gt;网页元素&lt;&#x2F;a&gt;</em><br><h4 id="锚点链接"><a href="#锚点链接" class="headerlink" title="锚点链接"></a>锚点链接</h4></li>
+<li><em>&lt;a href&#x3D;”#名字”&gt;文字&lt;&#x2F;a&gt; &lt;h3 id&#x3D;”名字”&gt;&lt;&#x2F;h3&gt;</em> 链接将跳转到id与href相同的地方<br><h3 id="注释标签"><a href="#注释标签" class="headerlink" title="注释标签"></a>注释标签</h3></li>
+</ol>
+<p>16.&lt;!–注释内容—&gt;</p>
+<ul>
+<li><em><strong>特殊字符</strong></em> <ul>
+<li><table>
+<thead>
+<tr>
+<th align="center">特殊字符</th>
+<th align="center">代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空格</td>
+<td align="center">&amp;npsp</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">&amp;lt</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">&amp;gt</td>
+</tr>
+<tr>
+<td align="center">&amp;</td>
+<td align="center">&amp;amp</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">&amp;times</td>
+</tr>
+<tr>
+<td align="center">&#x2F;</td>
+<td align="center">&amp;divide</td>
+</tr>
+<tr>
+<td align="center">平方</td>
+<td align="center">&amp;sup2</td>
+</tr>
+<tr>
+<td align="center">立方</td>
+<td align="center">&amp;sup3</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/19/My-New-Post/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,7 +498,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
