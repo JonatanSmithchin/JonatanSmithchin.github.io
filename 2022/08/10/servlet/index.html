@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="继承关系 HttpServlet-&gt;genericServlet-&gt;Servlet 核心方法: init() service() destory() service(): 当有请求过来,service()会自动相应 (tomcat容器调用) 在HttpServlet中会分析请求方式,决定调用get&#x2F;post&#x2F;head&#x2F;delet等等方法在HttpServl">
+  <meta name="description" content="大部分404错误罪魁祸首:Tomcat9 对应 javax.servlet浪费某人接近12h      图中url只是运行tomcat后自动在浏览器中打开访问的文件,与运行没有什么关心 继承关系 HttpServlet-&gt;genericServlet-&gt;Servlet 核心方法: init() service() destory() service(): 当有请求过来,service(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="servlet">
 <meta property="og:url" content="http://example.com/2022/08/10/servlet/index.html">
 <meta property="og:site_name" content="Lx&#39;s Blog">
-<meta property="og:description" content="继承关系 HttpServlet-&gt;genericServlet-&gt;Servlet 核心方法: init() service() destory() service(): 当有请求过来,service()会自动相应 (tomcat容器调用) 在HttpServlet中会分析请求方式,决定调用get&#x2F;post&#x2F;head&#x2F;delet等等方法在HttpServl">
+<meta property="og:description" content="大部分404错误罪魁祸首:Tomcat9 对应 javax.servlet浪费某人接近12h      图中url只是运行tomcat后自动在浏览器中打开访问的文件,与运行没有什么关心 继承关系 HttpServlet-&gt;genericServlet-&gt;Servlet 核心方法: init() service() destory() service(): 当有请求过来,service(">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/50679a031764b0a89c8abc89d9da01a1b2bdac4c.png">
 <meta property="og:image" content="https://i0.hdslb.com/bfs/album/165a21fc02d82be59631d758f4303ed018056b77.png">
 <meta property="article:published_time" content="2022-08-10T03:07:13.000Z">
-<meta property="article:modified_time" content="2022-08-10T13:34:58.193Z">
+<meta property="article:modified_time" content="2022-08-12T12:24:54.370Z">
 <meta property="article:author" content="刘骁">
 <meta property="article:tag" content="后端学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/165a21fc02d82be59631d758f4303ed018056b77.png">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/50679a031764b0a89c8abc89d9da01a1b2bdac4c.png">
 
 <link rel="canonical" href="http://example.com/2022/08/10/servlet/">
 
@@ -195,10 +196,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-10 11:07:13 / 修改时间：21:34:58" itemprop="dateCreated datePublished" datetime="2022-08-10T11:07:13+08:00">2022-08-10</time>
+              <time title="创建时间：2022-08-10 11:07:13" itemprop="dateCreated datePublished" datetime="2022-08-10T11:07:13+08:00">2022-08-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-12 20:24:54" itemprop="dateModified" datetime="2022-08-12T20:24:54+08:00">2022-08-12</time>
+              </span>
 
           
 
@@ -211,7 +218,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><ol>
+        <h2 id="大部分404错误罪魁祸首-Tomcat9-对应-javax-servlet"><a href="#大部分404错误罪魁祸首-Tomcat9-对应-javax-servlet" class="headerlink" title="大部分404错误罪魁祸首:Tomcat9 对应 javax.servlet"></a>大部分404错误罪魁祸首:Tomcat9 对应 javax.servlet</h2><p>浪费某人接近12h<br>   <img src="https://i0.hdslb.com/bfs/album/50679a031764b0a89c8abc89d9da01a1b2bdac4c.png" alt="tomcat配置"><br>   图中url只是运行tomcat后自动在浏览器中打开访问的文件,与运行没有什么关心</p>
+<h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><ol>
 <li>HttpServlet-&gt;genericServlet-&gt;Servlet<br><img src="https://i0.hdslb.com/bfs/album/165a21fc02d82be59631d758f4303ed018056b77.png" alt="servlet继承关系"></li>
 <li><strong>核心方法:</strong> init() service() destory()</li>
 <li><strong>service():</strong> 当有请求过来,service()会自动相应 <em><strong>(tomcat容器调用)</strong></em> <br>在HttpServlet中会分析请求方式,决定调用get&#x2F;post&#x2F;head&#x2F;delet等等方法<br>在HttpServlet中,这些方法默认为405风格——需要用子类实现对应方法</li>
@@ -272,7 +280,13 @@
 <h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><ol>
 <li>Http是无状态的:服务器<strong>无法</strong>判断两次请求是否是<strong>同一个客户端</strong>发过来的</li>
 <li>带来问题:无法区分用户,导致逻辑混乱</li>
-<li>解决:<strong>会话跟踪技术</strong>解决无状态问题</li>
+<li>解决:<strong>会话跟踪技术</strong>解决无状态问题<ol>
+<li>客户端第一次发请求给服务器,服务器获取session,获取不到,则创建新session响应给客户端</li>
+<li>下次客户端给服务器发送请求时,会将session带给服务器,则服务器会判断该请求和某次请求为同一客户端</li>
+<li>常用API<br> &#96;&#96;&#96;java<br>  request.getSession(); &#x2F;&#x2F;获取当前会话,若无,则创建新会话<br>  request.getSession(true);<br>  request.getSession(false); &#x2F;&#x2F;获取会话,若无,则只返回null<br><br>  session.getID(); &#x2F;&#x2F; 获取sessionID(全球唯一)<br>  session.isNew();<br>  session.getMaxInactiveInterval(); &#x2F;&#x2F;session的非激活间隔时长,默认1800s<br>  session.setMaxInactiveInterval();<br>  session.invalidate(); &#x2F;&#x2F;强制使session失效<br>  ..。</li>
+</ol>
+</li>
+<li></li>
 </ol>
 
     </div>
@@ -354,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB"><span class="nav-number">1.</span> <span class="nav-text">继承关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">Servlet生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.</span> <span class="nav-text">Http协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D"><span class="nav-number">4.</span> <span class="nav-text">会话</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E9%83%A8%E5%88%86404%E9%94%99%E8%AF%AF%E7%BD%AA%E9%AD%81%E7%A5%B8%E9%A6%96-Tomcat9-%E5%AF%B9%E5%BA%94-javax-servlet"><span class="nav-number">1.</span> <span class="nav-text">大部分404错误罪魁祸首:Tomcat9 对应 javax.servlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">继承关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.</span> <span class="nav-text">Servlet生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Http%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">Http协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D"><span class="nav-number">5.</span> <span class="nav-text">会话</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
